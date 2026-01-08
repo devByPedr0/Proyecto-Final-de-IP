@@ -75,22 +75,22 @@ public class Main {
 
         // =================================================================Ingreso de la matriz base
 
-        System.out.print("¿Cuántas filas tiene la matriz base? (n>0) :  ");
+        System.out.print("¿Cuántas filas tiene la matriz base? (0-30) :  ");
         s = in.next().trim();
         int n = parser(s);
 
-        while(n <= 0) {
-            System.out.print("La cantidad de filas debe ser un número mayor que 0, ingréselo nuevamente: ");
+        while(n <= 0 || n > 30) {
+            System.out.print("La cantidad de filas debe ser un número mayor que 0 y menor o igual que 30, ingréselo nuevamente: ");
             s = in.next().trim();
             n = parser(s);
         }
 
-        System.out.print("¿Cuántas columnas tiene la matriz base? (m>0) :  ");
+        System.out.print("¿Cuántas columnas tiene la matriz base? (0-30) :  ");
         s = in.next().trim();
         int m = parser(s);
         
-        while(m <= 0) {
-            System.out.print("La cantidad de columnas debe ser un número mayor que 0, ingréselo nuevamente: ");
+        while(m <= 0 || m > 30) {
+            System.out.print("La cantidad de columnas debe ser un número mayor que 0 y menor o igual que 30, ingréselo nuevamente: ");
             s = in.next().trim();
             m = parser(s);
         }
