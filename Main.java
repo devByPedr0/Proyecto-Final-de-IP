@@ -1,9 +1,52 @@
 import java.util.Scanner;
 
 public class Main {
+
+    // ==============================Función para encontrar la submatriz dentro de la matriz principal
+    public static void findSubmatrix(boolean[][] matriz, boolean[][] subMatriz, int n, int m, int subN, int subM) {
+    
+        boolean found = true;
+        boolean alreadyFound = false;
+
+        for(int x = 0; x <= n - subN; x++){
+            for(int y = 0; y <= m - subM; y++){
+
+                found = true;
+                
+                if(matriz[x][y] == subMatriz[0][0]) {
+                    for(int i = 1; i < subN; i++) {
+                        for(int j = 1; j < subM; j++) {
+                            if(matriz[x + i][y + j] != subMatriz[i][j]) {
+                                found = false;
+                                break;
+                            }
+                        }
+                        if(!found) break;
+                    }
+
+                    if(found && alreadyFound){
+                       System.out.println("Fila: " + (x+1) + " Columna: " + (y+1));
+                    }
+
+                    if(found && !alreadyFound) {
+                        System.out.println("La submatriz fue encontrada comenzando en : ");
+                        System.out.println("Fila: " + (x+1) + " Columna: " + (y+1) );
+                        alreadyFound = true;
+                    }
+                }
+            }
+        }
+    
+        if(!alreadyFound)
+            System.out.println("La submatriz no fue encontrada.");
+
+    }
     
     public static void main(String[] args) {
+        
         Scanner in = new Scanner(System.in);
+
+        // =================================================================Ingreso de la matriz base
 
         System.out.print("¿Cuántas filas tiene la matriz base? (n>0) :  ");
         int n = in.nextInt();
@@ -30,6 +73,8 @@ public class Main {
                 matriz[i][j] = in.nextInt() != 0;
             }
         }
+        
+        // ===========================================================Ingreso de la submatriz a buscar
 
         System.out.print("¿Cuántas filas tiene la submatriz a buscar? (1-" + n + ") :  ");
         int subN = in.nextInt();
@@ -57,42 +102,9 @@ public class Main {
             }
         }
 
-        boolean found = true;
-        boolean alreadyFound = false;
+        // ============================================Llamada a la función para encontrar la submatriz
 
-        for(int x = 0; x <= n - subN; x++){
-            for(int y = 0; y <= m - subM; y++){
-
-                found = true;
-                
-                if(matriz[x][y] == subMatriz[0][0]) {
-                    for(int i = 0; i < subN; i++) {
-                        for(int j = 0; j < subM; j++) {
-                            if(matriz[x + i][y + j] != subMatriz[i][j]) {
-                                found = false;
-                                break;
-                            }
-                        }
-                        if(!found) break;
-                    }
-
-                    if(found && alreadyFound){
-                       System.out.println("Fila: " + (x+1) + " Columna: " + (y+1));
-                    }
-
-                    if(found && !alreadyFound) {
-                        System.out.println("La submatriz fue encontrada comenzando en : ");
-                        System.out.println("Fila: " + (x+1) + " Columna: " + (y+1) );
-                        alreadyFound = true;
-                    }
-
-                }
-
-            }
-        }
-    
-        if(!alreadyFound)
-            System.out.println("La submatriz no fue encontrada.");
+        findSubmatrix(matriz, subMatriz, n, m, subN, subM);
 
     }
 }
