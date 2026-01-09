@@ -1,6 +1,19 @@
+import java.time.Year;
 import java.util.Scanner;
 
 public class Main {
+
+    // =====Colores ANSI para consola
+    public static final String RESET  = "\u001B[0m";
+
+    public static final String BLACK  = "\u001B[30m";
+    public static final String RED    = "\u001B[31m";
+    public static final String GREEN  = "\u001B[32m";
+    public static final String YELLOW = "\u001B[33m";
+    public static final String BLUE   = "\u001B[34m";
+    public static final String PURPLE = "\u001B[35m";
+    public static final String CYAN   = "\u001B[36m";
+    public static final String WHITE  = "\u001B[37m";
 
     // ==============================Función para encontrar la submatriz dentro de la matriz principal
     public static void findSubmatrix(boolean[][] matriz, boolean[][] subMatriz, int n, int m, int subN, int subM) {
@@ -25,12 +38,12 @@ public class Main {
                     }
 
                     if(found && alreadyFound){
-                       System.out.println("Fila: " + (x+1) + " Columna: " + (y+1));
+                       System.out.println(GREEN + "Fila: " + (x+1) + " Columna: " + (y+1) + RESET);
                     }
 
                     if(found && !alreadyFound) {
-                        System.out.println("La submatriz fue encontrada comenzando en : ");
-                        System.out.println("Fila: " + (x+1) + " Columna: " + (y+1) );
+                        System.out.println(GREEN + "La submatriz fue encontrada comenzando en : " + RESET);
+                        System.out.println(GREEN + "Fila: " + (x+1) + " Columna: " + (y+1) + RESET);
                         alreadyFound = true;
                     }
                 }
@@ -38,7 +51,7 @@ public class Main {
         }
     
         if(!alreadyFound)
-            System.out.println("La submatriz no fue encontrada.");
+            System.out.println(RED + "La submatriz no fue encontrada." + RESET);
 
     }
     
@@ -73,31 +86,33 @@ public class Main {
         Scanner in = new Scanner(System.in);
         String s;
 
+        System.out.println(CYAN + "================ BUSCADOR DE SUBMATRICES ================" + RESET);
+
         // =================================================================Ingreso de la matriz base
 
-        System.out.print("¿Cuántas filas tiene la matriz base? (0-30) :  ");
+        System.out.print(YELLOW + "¿Cuántas filas tiene la matriz base? (0-30) :  " + RESET);
         s = in.next().trim();
         int n = parser(s);
 
         while(n <= 0 || n > 30) {
-            System.out.print("La cantidad de filas debe ser un número mayor que 0 y menor o igual que 30, ingréselo nuevamente: ");
+            System.out.print(RED + "La cantidad de filas debe ser un número mayor que 0 y menor o igual que 30, ingréselo nuevamente: " + RESET);
             s = in.next().trim();
             n = parser(s);
         }
 
-        System.out.print("¿Cuántas columnas tiene la matriz base? (0-30) :  ");
+        System.out.print(YELLOW + "¿Cuántas columnas tiene la matriz base? (0-30) :  " + RESET);
         s = in.next().trim();
         int m = parser(s);
         
         while(m <= 0 || m > 30) {
-            System.out.print("La cantidad de columnas debe ser un número mayor que 0 y menor o igual que 30, ingréselo nuevamente: ");
+            System.out.print(RED + "La cantidad de columnas debe ser un número mayor que 0 y menor o igual que 30, ingréselo nuevamente: " + RESET);
             s = in.next().trim();
             m = parser(s);
         }
 
         boolean[][] matriz = new boolean[n][m];
 
-        System.out.println("Ingrese los elementos de la matriz base (0 o false para 0, cualquier otra entrada será tomada como 1): ");
+        System.out.println(YELLOW + "Ingrese los elementos de la matriz base"+ RED +" (0/false = 0, otra entrada = 1): " + RESET);
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
@@ -108,29 +123,29 @@ public class Main {
         
         // ===========================================================Ingreso de la submatriz a buscar
 
-        System.out.print("¿Cuántas filas tiene la submatriz a buscar? (1-" + n + ") :  ");
+        System.out.print(YELLOW + "¿Cuántas filas tiene la submatriz a buscar? (1-" + n + ") :  " + RESET);
         s = in.next().trim();
         int subN = parser(s);
 
         while(subN > n || subN <= 0) {
-            System.out.print("La cantidad de filas debe ser número menor o igual a " + n + " y mayor que 0, ingréselo nuevamente: ");
+            System.out.print(RED + "La cantidad de filas debe ser número menor o igual a " + n + " y mayor que 0, ingréselo nuevamente: " + RESET);
             s = in.next().trim();
             subN = parser(s);
         }
 
-        System.out.print("¿Cuántas columnas tiene la submatriz a buscar? (1-" + m + ") :  ");
+        System.out.print(YELLOW + "¿Cuántas columnas tiene la submatriz a buscar? (1-" + m + ") :  " + RESET);
         s = in.next().trim();
         int subM = parser(s);
 
         while(subM > m || subM <= 0) {
-            System.out.print("La cantidad de columnas debe ser un número menor o igual a " + m + " y mayor que 0, ingréselo nuevamente: ");
+            System.out.print(RED + "La cantidad de columnas debe ser un número menor o igual a " + m + " y mayor que 0, ingréselo nuevamente: " + RESET);
             s = in.next().trim();
             subM = parser(s);
         }
         
         boolean[][] subMatriz = new boolean[subN][subM];
 
-        System.out.println("Ingrese los elementos de la submatriz (0 o false para 0, cualquier otra entrada será tomada como 1): ");
+        System.out.println(YELLOW + "Ingrese los elementos de la submatriz"+ RED +" (0/false = 0, otra entrada = 1): " + RESET);
 
         for (int i = 0; i < subN; i++) {
             for (int j = 0; j < subM; j++) {
