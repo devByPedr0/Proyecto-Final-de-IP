@@ -100,8 +100,6 @@ public class Control {
 
         findSubmatrix(matriz, subMatriz, n, m, subN, subM);
 
-        in.close();
-
     }
 
     // ==============================Función para encontrar la submatriz dentro de la matriz principal
